@@ -22,7 +22,7 @@
           :questions="questions"
           />
           <Results 
-          v-show="index === questions.length" 
+          v-show="questions.length && index === questions.length" 
           :numCorrect="numCorrect"
           :numTotal="numTotal"
           :startQuiz="startQuiz"
@@ -90,6 +90,9 @@
         this.prepareAnswers();
       },
       selectAnswer: function(answerIndex) {
+        if (this.answered) {
+          return false;
+        }
         this.selectedAnswerIndex = answerIndex;
       },
       submitAnswer: function(e) {
